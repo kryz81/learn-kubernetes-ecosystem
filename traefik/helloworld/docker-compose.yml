@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik:v2.3
+    # insecure to allow http
+    command: --api.insecure=true --providers.docker --log.level=INFO
+    ports:
+      - "8000:80"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  whoami:
+    image: containous/whoami
+    labels:
+      - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"

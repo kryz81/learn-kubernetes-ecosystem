@@ -1,0 +1,16 @@
+api:
+  dashboard: true
+  insecure: true
+
+providers:
+  docker:
+    exposedByDefault: false # traefik should not expose all services by default, we do it with entry points
+
+log:
+  level: DEBUG
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"

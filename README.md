@@ -22,7 +22,7 @@
 
 ## Proxy / Load Balancer
 
-* [ ] Traefik
+* [x] Traefik
 
 ## Distributed Tracing
 

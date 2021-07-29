@@ -1,0 +1,11 @@
+api:
+  dashboard: true
+
+providers:
+  docker: 
+    watch: true
+    exposedByDefault: false
+    swarmMode: true
+
+log:
+  level: INFO
