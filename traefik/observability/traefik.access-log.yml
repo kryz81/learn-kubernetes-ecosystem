@@ -1,0 +1,23 @@
+api:
+  dashboard: true
+  insecure: true
+
+providers:
+  docker:
+    exposedByDefault: false
+
+accessLog:
+  filters:
+     statusCodes:
+       - "404"
+     retryAttempts: true
+     minDuration: "10ms"
+
+log:
+  level: INFO
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"

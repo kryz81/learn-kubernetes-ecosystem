@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  traefik:
+    image: traefik:v2.3
+    ports:
+      - "8000:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.access-log.yml:/etc/traefik/traefik.yml
+
+  catapp:
+     image: mikesir87/cats:1.0
+     labels:
+       - "traefik.enable=true"
+       - "traefik.http.routers.catapp.rule=Host(`catapp.localhost`)"
+       - "traefik.http.routers.catapp.service=catapp"
+       - "traefik.http.routers.catapp.entrypoints=web"
+       - "traefik.http.routers.catapp.middlewares=test-compress,test-errorpages"
+       - "traefik.http.services.catapp.loadbalancer.server.port=5000"
+       - "traefik.http.middlewares.test-compress.compress=true"
+       - "traefik.http.middlewares.test-errorpages.errors.status=400-599"
+       - "traefik.http.middlewares.test-errorpages.errors.service=error"
+       - "traefik.http.middlewares.test-errorpages.errors.query=/{status}.html"
+
+  error:
+    image: guillaumebriday/traefik-custom-error-pages
+    labels:
+          - "traefik.enable=true"
+          - "traefik.http.routers.error.rule=Host(`error.localhost`)"
+          - "traefik.http.routers.error.service=error"
+          - "traefik.http.services.error.loadbalancer.server.port=80"
+          - "traefik.http.routers.error.entrypoints=web"

@@ -1,0 +1,26 @@
+api:
+  dashboard: true
+  insecure: true
+
+providers:
+  docker:
+    swarmMode: true
+
+accessLog: {}
+
+log:
+  level: INFO
+
+metrics:
+  prometheus:
+    buckets:
+      - 0.1
+      - 0.3
+      - 1.2
+      - 5.0
+
+entryPoints:
+  web:
+    address: ":80"
+  websecure:
+    address: ":443"
