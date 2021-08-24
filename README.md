@@ -23,6 +23,7 @@
 ## Proxy / Load Balancer
 
 * [x] Traefik
+* [x] ingress-nginx
 
 ## Distributed Tracing
 
