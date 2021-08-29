@@ -1,3 +1,4 @@
 .idea
 traefik-training
 node_modules
+helm/content-helm-deep-dive-v3

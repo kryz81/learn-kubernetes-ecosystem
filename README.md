@@ -11,7 +11,7 @@
 
 ## Package Management
 
-* [ ] Helm
+* [x] Helm
 * [ ] Kustomize
 
 ## Service Mesh
