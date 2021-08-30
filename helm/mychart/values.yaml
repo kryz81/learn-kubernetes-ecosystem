@@ -1,0 +1,16 @@
+service:
+  name: blog
+  type: NodePort
+  app: blog
+  port: 80
+  targetPort: 2368
+  protocol: TCP
+deployment:
+  name: blog-deployment
+  label: blog
+  imagePullPolicy: Always
+  replicas: 1
+  image: ghost:2.6-alpine
+  containerPort: 2368
+  url: url
+  urlValue: http://exampleblog.com
